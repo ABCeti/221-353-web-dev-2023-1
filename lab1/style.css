@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
+    height: 100%;
 }
 
 ul {
@@ -23,7 +24,6 @@ ul {
     color: white;
     padding: 20px 0px;
     font-size: 1.5rem;
-    background-image: url(images/background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
