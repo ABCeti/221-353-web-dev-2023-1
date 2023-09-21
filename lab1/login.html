@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="height=device-height, width=600">
+    <meta name="viewport" content="height=device-height,width=600">
     <title>Веб-разработчик</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;400;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
@@ -24,40 +24,35 @@
                     <li><a href="login.html">Войти</a></li>
                 </ul>
             </nav>
+            <div class="text-center">
+                <h1 class="text-upper text-center">Просто сайт</h1>
+            </div>
         </div>
     </header>
 
     <main>
         <div class="container">
-            <section id="tables">
-                <h2>Табличка, пока одна и маленькая</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Язык</th>
-                            <th>Степень владения (лет)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>HTML</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>CSS</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>C++</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <td>Python+</td>
-                            <td>3</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+            <div class="ii">
+            <div class="authentication">
+                <form action="login.php" method="POST">
+                    <h1>Вход</h1>
+        
+                    <label for="login">Логин:</label>
+                    <input type="text" id="login" name="login" required><br>
+        
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" required><br>
+        
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember" name="remember"> Запомнить меня
+                    </label><br>
+        
+                    <input type="submit" value="Войти">
+                </form>
+                <p></p>
+                <a href="registration.html" class="register-button">Зарегистрироваться</a>
+            </div>
+            </div>
         </div>
     </main>
     <footer class="footer">

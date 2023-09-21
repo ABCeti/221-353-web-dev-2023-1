@@ -1,0 +1,68 @@
+.ii {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.registration {
+    background-color: rgba(160, 160, 160, 0.9); /* Цвет фона формы с прозрачностью */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+}
+
+.registration h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333; /* Цвет заголовка */
+}
+
+.registration label {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+    color: #333; /* Цвет текста метки */
+}
+
+.registration input[type="text"],
+.registration input[type="password"],
+.registration input[type="checkbox"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; /* Цвет рамки поля ввода */
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.registration input[type="submit"] {
+    background-color: #060606; /* Цвет фона кнопки "Зарегистрироваться" */
+    color: #fff; /* Цвет текста кнопки */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.registration input[type="submit"]:hover {
+    background-color: #0056b3; /* Цвет фона кнопки при наведении */
+}
+
+.login-button {
+    background-color: #060606;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
