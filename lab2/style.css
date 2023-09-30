@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+.header {
+    background-color: rgb(39, 39, 39);
+    color: white;
+    padding: 1.25rem 0;
+    font-size: 1.5rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    max-width: 75%;
+    margin: 0 auto;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.main-menu li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.main-menu li:last-child {
+    margin-right: 0;
+}
+
+.sidebar {
+    float: left;
+    width: 240px;
+    padding-top: 1rem;
+    box-sizing: border-box;
+    margin-left: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.container-product{
+    margin: 0 auto;
+    vertical-align: top;
+    border-radius: 20px;
+    padding: 1rem;
+    margin-left: 240px;
+    text-align: center;
+}
+
+.photo {
+    width: 50%;
+    height: 100%;
+}
+
+.product {
+    width: 31rem;
+    padding: 1rem;
+    border: 2px solid #7c7c7c;
+    background-color: rgb(255, 255, 255);
+    display: inline-block;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+} 
+
+.main {
+    max-width: 95%;
+    margin: 0 auto;
+    font-size: 1.5rem;
+}
+
+.buy-btn {
+    background-color: #515151;
+    color: white;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.footer {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+}
+
