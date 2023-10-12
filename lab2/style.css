@@ -7,17 +7,22 @@ body {
 .header {
     background-color: rgb(39, 39, 39);
     color: white;
-    padding: 1.25rem 0;
-    font-size: 1.5rem;
+    padding: 20px;
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h1 {
+    margin: 0;
+    font-size: 46px;
 }
 
 .container {
     max-width: 75%;
     margin: 0 auto;
 }
-
 .main-menu a {
     text-decoration: none;
     color: white;
@@ -29,10 +34,23 @@ body {
     margin-right: 10px;
 }
 
-.main-menu li:last-child {
-    margin-right: 0;
+.sidebar {
+    flex: 1;
+    background-color: rgb(39, 39, 39);
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 200px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }
 
+.sidebar .menu-list a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+}
 .sidebar {
     float: left;
     width: 240px;
@@ -52,22 +70,24 @@ body {
     padding: 1rem;
     margin-left: 240px;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .photo {
-    width: 50%;
-    height: 100%;
+    max-width: 100%;
+    border-radius: 4px;
 }
 
 .product {
-    width: 31rem;
-    padding: 1rem;
-    border: 2px solid #7c7c7c;
-    background-color: rgb(255, 255, 255);
-    display: inline-block;
-    border-radius: 5px;
+    width: calc(50% - 20px); /* Распределяем по два рецепта на одной линии с небольшим расстоянием между ними */
     margin-bottom: 20px;
-    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
 } 
 
 .main {
