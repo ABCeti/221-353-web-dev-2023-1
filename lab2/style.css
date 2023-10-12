@@ -74,6 +74,7 @@ header h1 {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 20px;
+    margin-right: 140px;
 }
 
 .photo {
