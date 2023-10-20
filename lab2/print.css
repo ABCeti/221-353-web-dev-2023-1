@@ -1,0 +1,5 @@
+@media print {
+    header, nav, .sidebar {
+        display: none; /* Скрываем элементы для печати */
+    }
+}

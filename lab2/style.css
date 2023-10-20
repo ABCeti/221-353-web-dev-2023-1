@@ -83,7 +83,7 @@ header h1 {
 }
 
 .product {
-    width: calc(50% - 20px); /* Распределяем по два рецепта на одной линии с небольшим расстоянием между ними */
+    width: calc(50% - 20px); 
     margin-bottom: 20px;
     box-sizing: border-box;
     border: 1px solid #ccc;
