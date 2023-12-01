@@ -1,5 +1,20 @@
 @media print {
-    header, nav, .sidebar {
-        display: none; /* Скрываем элементы для печати */
+    nav.main-menu {
+        display: none;
+    }
+
+    /* Скрываем боковое меню при печати */
+    aside.sidebar {
+        display: none;
+    }
+
+    /* Скрываем кнопки заказа при печати */
+    button.buy-btn {
+        display: none;
+    }
+
+    /* Скрываем футер при печати */
+    footer.footer {
+        display: none;
     }
 }
