@@ -1,21 +1,5 @@
-/* print.css */
-
-/* Скрываем навигацию */
-nav.main-menu {
-    display: none;
-}
-
-/* Скрываем боковое меню */
-aside.sidebar {
-    display: none;
-}
-
-/* Скрываем кнопки заказа */
-button.buy-btn {
-    display: none;
-}
-
-/* Скрываем футер */
-footer.footer {
-    display: none;
+@media print {
+    header, nav, .sidebar {
+        display: none; /* Скрываем элементы для печати */
+    }
 }
