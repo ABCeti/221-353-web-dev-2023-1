@@ -1,4 +1,3 @@
-// Функция создания HTML-элемента для отображения имени автора
 function createAuthorElement(record) {
     let user = record.user || { 'name': { 'first': '', 'last': '' } };
     let authorElement = document.createElement('div');
@@ -7,7 +6,6 @@ function createAuthorElement(record) {
     return authorElement;
 }
 
-// Функция создания HTML-элемента для отображения количества голосов вверх
 function createUpvotesElement(record) {
     let upvotesElement = document.createElement('div');
     upvotesElement.classList.add('upvotes');
@@ -15,7 +13,6 @@ function createUpvotesElement(record) {
     return upvotesElement;
 }
 
-// Функция создания подвала с информацией об авторе и голосах
 function createFooterElement(record) {
     let footerElement = document.createElement('div');
     footerElement.classList.add('item-footer');
@@ -24,7 +21,6 @@ function createFooterElement(record) {
     return footerElement;
 }
 
-// Функция создания HTML-элемента для отображения содержимого записи
 function createContentElement(record) {
     let contentElement = document.createElement('div');
     contentElement.classList.add('item-content');
@@ -32,7 +28,6 @@ function createContentElement(record) {
     return contentElement;
 }
 
-// Функция создания HTML-элемента списка с содержимым и подвалом
 function createListItemElement(record) {
     let itemElement = document.createElement('div');
     itemElement.classList.add('facts-list-item');
@@ -41,7 +36,6 @@ function createListItemElement(record) {
     return itemElement;
 }
 
-// Функция отрисовки записей
 function renderRecords(records) {
     let factsList = document.querySelector('.facts-list');
     factsList.innerHTML = '';
@@ -50,7 +44,6 @@ function renderRecords(records) {
     }
 }
 
-// Функция обновления информации о пагинации
 function setPaginationInfo(info) {
     document.querySelector('.total-count').innerHTML = info.total_count;
     let start = info.total_count && (info.current_page - 1) * info.per_page + 1;
@@ -59,7 +52,6 @@ function setPaginationInfo(info) {
     document.querySelector('.current-interval-end').innerHTML = end;
 }
 
-// Функция создания кнопки для пагинации
 function createPageBtn(page, classes = []) {
     let btn = document.createElement('button');
     classes.push('btn');
@@ -71,7 +63,6 @@ function createPageBtn(page, classes = []) {
     return btn;
 }
 
-// Функция отрисовки элементов пагинации
 function renderPaginationElement(info) {
     let btn;
     let paginationContainer = document.querySelector('.pagination');
@@ -103,7 +94,6 @@ function renderPaginationElement(info) {
     paginationContainer.append(btn);
 }
 
-// Функция загрузки данных
 function downloadData(page = 1, searchQuery = '') {
     let factsList = document.querySelector('.facts-list');
     let url = new URL(factsList.dataset.url);
@@ -126,12 +116,10 @@ function downloadData(page = 1, searchQuery = '') {
     xhr.send();
 }
 
-// Обработчик события изменения "per-page" dropdown
 function perPageBtnHandler(event) {
     downloadData(1);
 }
 
-// Обработчик события кнопок пагинации
 function pageBtnHandler(event) {
     if (event.target.dataset.page) {
         downloadData(event.target.dataset.page);
@@ -139,7 +127,6 @@ function pageBtnHandler(event) {
     }
 }
 
-// Обработчик события загрузки страницы
 window.onload = function () {
     downloadData();
     document.querySelector('.pagination').onclick = pageBtnHandler;
@@ -155,14 +142,16 @@ window.onload = function () {
     document.querySelector('.search-field').addEventListener('input', function () {
         const searchQuery = this.value.trim();
         if (searchQuery !== '') {
+            
             fetchAutocomplete(searchQuery);
         } else {
+            
             clearAutocomplete();
         }
     });
+    
 };
 
-// Функция получения предложений автозаполнения
 function fetchAutocomplete(searchQuery) {
     const autocompleteUrl = `http://cat-facts-api.std-900.ist.mospolytech.ru/autocomplete?q=${encodeURIComponent(searchQuery)}`;
 
@@ -177,7 +166,6 @@ function fetchAutocomplete(searchQuery) {
         .catch(error => console.error('Error fetching autocomplete:', error));
 }
 
-// Функция отображения предложений автозаполнения
 function displayAutocomplete(suggestions) {
     const autocompleteList = document.querySelector('.autocomplete-list');
 
@@ -194,4 +182,9 @@ function displayAutocomplete(suggestions) {
         autocompleteList.appendChild(listItem);
     });
 
-    autocompleteList.style
+    autocompleteList.style.display = 'block';
+}
+
+function clearAutocomplete() {
+    document.querySelector('.autocomplete-list').innerHTML = '';
+}
