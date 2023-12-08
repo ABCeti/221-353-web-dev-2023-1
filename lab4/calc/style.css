@@ -1,0 +1,110 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  main {
+    text-align: center;
+  }
+  
+  .calc-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    border: 2px solid #000000; /* Контур вокруг калькулятора */
+    margin-block-start: 2em;
+  }
+  
+  .screen {
+    background: hsl(0, 100%, 50%);
+    color: hsl(255, 100%, 100%);
+    font-size: 2rem;
+    padding: 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 80px;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative;
+  }
+  
+  .screen span {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .screen::before {
+    content: '|'; /* Разделитель между цифрами и действиями */
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    margin-left: 5px; /* Расстояние от разделителя до цифр */
+    color: #fff; /* Цвет разделителя */
+  }
+  
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px; /* Увеличенное расстояние между кнопками */
+    align-items: center; /* Выравнивание на одном уровне */
+    border-top: 2px solid #000000; /* Контур вокруг кнопок */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень для кнопок */
+  }
+  
+  .key {
+    background: hsl(210, 25%, 95%);
+    color: #000;
+    font-size: 18px;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Плавные изменения цвета и тени */
+    border-radius: 50%; /* Круглые углы кнопок */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень для кнопок */
+  }
+  
+  .key:hover {
+    background-color: #7f8c8d; /* Темнее серый при наведении */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Тень усиливается при наведении */
+  }
+  
+  .digits {
+    grid-column: span 3;
+  }
+  
+  .result,
+ 
+  
+  .clear {
+    background: hsl(210, 25%, 95%);
+    color: #000;
+    font-size: 18px;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Плавные изменения цвета и тени */
+    border-radius: 50%; /* Круглые углы кнопок */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень для кнопок */
+  }
+  
+  .clear:hover {
+    background-color: #7f8c8d; /* Темнее серый при наведении */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Тень усиливается при наведении */
+  }
+  
+  .other {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
