@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Крестики-нолики</title>
+    <title>Крестики-Нолики</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main>
-        <div id="ticTacToeBoard" class="board">
-            <!-- Ячейки игрового поля будут добавлены динамически в JavaScript -->
+        <div id="game">
+            <h1>Крестики-Нолики</h1>
+            <div class="messages"></div>
+            <div id="board"></div>
+            <button class="btn">Новая игра</button>
         </div>
-        <div id="resultMessage" class="result-message"></div>
     </main>
-    <script src="ticTacToe.js" defer></script>
+    <script src="main.js"></script>
 </body>
 </html>

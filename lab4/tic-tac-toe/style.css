@@ -1,0 +1,41 @@
+#game {
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+#board {
+    height: 300px;
+    width: 300px;
+    margin: auto;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    float: left;
+    font-size: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cell:hover {
+    background-color: #f2f2f2; /* Цвет при наведении на ячейку */
+}
+
+.x {
+    color: #3498db; /* Цвет для крестиков */
+}
+
+.o {
+    color: #e74c3c; /* Цвет для ноликов */
+}
+
+.btn {
+    margin: 10px 0;
+}
