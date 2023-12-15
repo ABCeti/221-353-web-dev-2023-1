@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <title>To Do List</title>
+</head>
+
+<body>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Создание новой задачи</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="newTaskForm">
+                <fieldset>
+                  <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Название задачи</label>
+                    <input type="text" name="taskName" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Описание</label>
+                    <textarea name="taskDescription" class="form-control" placeholder=""> </textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="disabledSelect" class="form-label">Статус</label>
+                    <select name="taskStatus" class="form-select">
+                      <option value="to-do">to do</option>
+                      <option value="done">done</option>
+                    </select>
+                </div>
+                </fieldset>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          <button type="button" id="createTaskButton" class="btn btn-primary" data-bs-dismiss="modal">Создать</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="showTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="showTaskModalTitle">Просмотр</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="showwTaskForm">
+                <fieldset>
+                  <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Название задачи</label>
+                    <input type="text" name="taskName" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Описание</label>
+                    <textarea name="taskDescription" class="form-control" placeholder=""> </textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="disabledSelect" class="form-label">Статус</label>
+                    <select name="taskStatus" class="form-select">
+                      <option value="to-do">to do</option>
+                      <option value="done">done</option>
+                    </select>
+                </div>
+                </fieldset>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="showskButton" class="btn btn-primary" data-bs-dismiss="modal">Хорошо</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Редактирование</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="editTaskForm">
+                <fieldset>
+                  <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Название задачи</label>
+                    <input type="text" name="taskName" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Описание</label>
+                    <textarea name="taskDescription" class="form-control" placeholder=""> </textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="disabledSelect" class="form-label">Статус</label>
+                    <select name="taskStatus" class="form-select">
+                      <option value="to-do">to do</option>
+                      <option value="done">done</option>
+                    </select>
+                </div>
+                </fieldset>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          <button type="button" id="saveTaskButton" class="btn btn-primary" data-bs-dismiss="modal">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">To Do List</a> 
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Новая задача</button>
+
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="alerts my-3">
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">To Do</h4>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul id="to-do-list" class="list-group list-group-flush">
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge bg-primary tasks-counter">0</span> <span class="text-muted">задач</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">Done</h4>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul id="done-list" class="list-group list-group-flush">
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge bg-primary tasks-counter">0</span> <span class="text-muted">задач</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Templates -->
+    <template id="alert-template">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <span class="msg">
+                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </template>
+
+    <template id="task-template">
+        <li class="task list-group-item d-flex">
+            <div class="me-auto">
+                <span class="task-name">Название задачи</span>
+            </div>
+            <div class="actions invisible">
+                <a class="move-btn move-to-do" title="Переместить в To Do">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <a data-action="show" title="Посмотреть">
+                    <i class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#showTaskModal"></i>
+                </a>
+                <a data-action="edit"  title="Редактировать">
+                    <i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                </a>
+                <a title="Удалить">
+                    <i class="fas fa-trash-o"></i>
+                </a>
+                <a class="move-btn move-done" title="Переместить в Done">
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </li>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script defer src="main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+.actions > * {
+    margin-right: 0.5rem;
+}
+
+.actions > *:last-child {
+    margin-right: 0;
+}
+
+.actions i {
+    font-family: FontAwesome;
+}
+
+.move-to-do, .move-done, .move-to-do:hover, .move-done:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.task:hover .actions {
+    visibility: visible !important;
+}
+
+#to-do-list .move-to-do, #done-list .move-done {
+    display: none;
+}
