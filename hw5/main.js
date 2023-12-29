@@ -3,7 +3,7 @@
 function displayTask(taskInfo) {
     let liTemplate = document.getElementById('task-template').content.firstElementChild;
     let li = liTemplate.cloneNode(true);
-    li.querySelector(".task-name").textContent = taskInfo.name;
+    li.querySelector(".task-name").innerText = taskInfo.name;
     li.id = taskInfo.id;
     let list = document.getElementById(`${taskInfo.status}-list`);
     list.append(li);
@@ -19,7 +19,54 @@ function displayAllTask() {
     }
 }
 
+function showTask(event) {
+    let button = event.relatedTarget;
+    let taskNum = button.closest('.task').id;
+    let taskInfo = JSON.parse(localStorage.getItem(taskNum));
+    let form = document.getElementById('showTaskForm');
+    form.elements['taskName'].value = taskInfo.name;
+    form.elements['taskDescription'].value = taskInfo.description;
+    form.elements['taskStatus'].value = taskInfo.status;
+}
 
+let showButton = document.getElementById('showskButton');
+showButton.addEventListener('click', showTask);
+
+function moveTask(event) {
+    let button = event.target;
+    let taskNum = button.closest('.task').id;
+    let taskInfo = JSON.parse(localStorage.getItem(taskNum));
+
+    let newStatus = button.classList.contains('move-to-do') ? 'to-do' : 'done';
+
+    taskInfo.status = newStatus;
+    localStorage.setItem(taskNum, JSON.stringify(taskInfo));
+
+    let listItem = document.getElementById(taskNum);
+    let newList = document.getElementById(`${newStatus}-list`);
+    newList.appendChild(listItem);
+}
+
+document.querySelectorAll('.task .move-to-do, .task .move-done').forEach(function (button) {
+    button.addEventListener('click', moveTask);
+});
+
+function deleteTask(event) {
+    let button = event.target;
+    let taskNum = button.closest('.task').id;
+
+    // Удаление задачи из localStorage
+    localStorage.removeItem(taskNum);
+
+    // Удаление задачи из DOM
+    let listItem = document.getElementById(taskNum);
+    listItem.remove();
+}
+
+// Обработчики событий для кнопок удаления
+document.querySelectorAll('.task .fa-trash-o').forEach(function (button) {
+    button.addEventListener('click', deleteTask);
+});
 
 function createTask(event) {
     let form = document.getElementById("newTaskForm");
@@ -81,6 +128,6 @@ window.onload = displayAllTask;
 let editsaveButton = document.getElementById("saveTaskButton");
 editsaveButton.onclick = saveTask;
 
-let modal = document.getElementById("editModal");
-modal.addEventListener('show.bs.modal', beforeOpenEditModal);
+let editModal = document.getElementById("editModal");
+editModal.addEventListener('show.bs.modal', beforeOpenEditModal);
 

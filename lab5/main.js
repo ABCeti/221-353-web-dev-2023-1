@@ -94,17 +94,14 @@ function renderPaginationElement(info) {
     paginationContainer.append(btn);
 }
 
-function downloadData(page = 1, searchQuery = '') {
+
+function downloadData(page = 1, query) {
     let factsList = document.querySelector('.facts-list');
     let url = new URL(factsList.dataset.url);
     let perPage = document.querySelector('.per-page-btn').value;
     url.searchParams.append('page', page);
     url.searchParams.append('per-page', perPage);
-    
-    if (searchQuery !== '') {
-        url.searchParams.append('q', searchQuery);
-    }
-
+    if (query) url.searchParams.append('q', query);
     let xhr = new XMLHttpRequest();
     xhr.open('GET', url);
     xhr.responseType = 'json';
@@ -117,74 +114,76 @@ function downloadData(page = 1, searchQuery = '') {
 }
 
 function perPageBtnHandler(event) {
-    downloadData(1);
+    let query = document.querySelector('.search-field').value;
+    downloadData(1, query);
 }
 
 function pageBtnHandler(event) {
     if (event.target.dataset.page) {
-        downloadData(event.target.dataset.page);
+        let query = document.querySelector('.search-field').value;
+        downloadData(event.target.dataset.page, query);
         window.scrollTo(0, 0);
     }
+}
+
+function doSearch() {
+    let query = document.querySelector('.search-field').value;
+    downloadData(1, query);
+}
+
+function setAutocomplete(event) {
+    let query = event.target.innerHTML;
+    document.querySelector('.search-field').value = query;
+    doSearch();
+    let autocompleteContainer = document.querySelector('.search-autocomplete');
+    autocompleteContainer.innerHTML = '';
+}
+
+function renderAutocomplete(info) {
+    let autocompleteContainer = document.querySelector('.search-autocomplete');
+    autocompleteContainer.innerHTML = '';
+    for (let i = 0; i < info.length; i++) {
+        item = document.createElement('div');
+        item.innerHTML = info[i];
+        item.onclick = setAutocomplete;
+        autocompleteContainer.append(item);
+    }
+}
+
+function showAutocomplete(event) {
+    let query = document.querySelector('.search-field').value;
+    let autocompleteList = document.querySelector('.search-autocomplete');
+    let url = new URL(autocompleteList.dataset.url);
+
+    url.searchParams.append('q', query);
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.responseType = 'json';
+    xhr.onload = function () {
+        console.log(this.response);
+        renderAutocomplete(this.response);
+    };
+    xhr.send();
+}
+
+function unhideAutocomplete(event) {
+    let autocompleteContainer = document.querySelector('.search-autocomplete');
+    autocompleteContainer.classList.remove('hidden');
+}
+
+function hideAutocomplete(event) {
+    let autocompleteContainer = document.querySelector('.search-autocomplete');
+    setTimeout(() => {
+        autocompleteContainer.classList.add('hidden');
+    }, 150);
 }
 
 window.onload = function () {
     downloadData();
     document.querySelector('.pagination').onclick = pageBtnHandler;
     document.querySelector('.per-page-btn').onchange = perPageBtnHandler;
-    document.querySelector('.search-btn').onclick = function () {
-        const searchField = document.querySelector('.search-field');
-        const searchQuery = searchField.value.trim();
-        if (searchQuery !== '') {
-            downloadData(1, searchQuery);
-        }
-    };
-
-    document.querySelector('.search-field').addEventListener('input', function () {
-        const searchQuery = this.value.trim();
-        if (searchQuery !== '') {
-            
-            fetchAutocomplete(searchQuery);
-        } else {
-            
-            clearAutocomplete();
-        }
-    });
-    
+    document.querySelector('.search-btn').onclick = doSearch;
+    document.querySelector('.search-field').oninput = showAutocomplete;
+    document.querySelector('.search-field').onfocus = unhideAutocomplete;
+    document.querySelector('.search-field').onblur = hideAutocomplete;
 };
-
-function fetchAutocomplete(searchQuery) {
-    const autocompleteUrl = `http://cat-facts-api.std-900.ist.mospolytech.ru/autocomplete?q=${encodeURIComponent(searchQuery)}`;
-
-    fetch(autocompleteUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => displayAutocomplete(data))
-        .catch(error => console.error('Error fetching autocomplete:', error));
-}
-
-function displayAutocomplete(suggestions) {
-    const autocompleteList = document.querySelector('.autocomplete-list');
-
-    autocompleteList.innerHTML = '';
-
-    suggestions.forEach(suggestion => {
-        const listItem = document.createElement('li');
-        listItem.textContent = suggestion;
-        listItem.addEventListener('click', function () {
-            document.querySelector('.search-field').value = suggestion;
-            clearAutocomplete();
-            downloadData(1, suggestion);
-        });
-        autocompleteList.appendChild(listItem);
-    });
-
-    autocompleteList.style.display = 'block';
-}
-
-function clearAutocomplete() {
-    document.querySelector('.autocomplete-list').innerHTML = '';
-}
